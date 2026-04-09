@@ -1,0 +1,71 @@
+
+/* ===== TOP NAVBAR ===== */
+.topnav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    background:#101321;;
+    color: #f1f3f5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Logo */
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 40px;       /* Fixed height */
+    width: 40px;        /* Fixed width */
+    object-fit: contain; /* Keep image proportion */
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Topnav links */
+.topnav-menu {
+    display: flex;
+    gap: 18px;
+}
+
+.topnav-menu a {
+    color: #cfd8dc;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.topnav-menu a:hover,
+.topnav-menu a.active {
+    background: #1abc9c;
+    color: #ffffff;
+}
+
+/* Welcome Message */
+.welcome-msg {
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #bdc3c7;
+}
+
+.welcome-msg i {
+    font-size: 20px;
+    color: #1abc9c;
+}

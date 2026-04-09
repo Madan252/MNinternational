@@ -1,0 +1,578 @@
+/* ===================== BASE STYLES ===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===================== PRODUCTS BANNER ===================== */
+.products-banner {
+    background: #1b263d;
+    color: #fff;
+    padding: 80px 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.products-banner .banner-title {
+    font-family: 'Lato', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.products-banner .banner-subtitle {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.products-banner .section-title {
+    font-family: 'Lato', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 40px 0 30px;
+    color: #fff;
+    text-align: center;
+}
+
+/* Product Sections - Both Camera and NVR/DVR use same styling */
+.product-section {
+    margin-bottom: 60px;
+}
+
+/* Quality Cards - Horizontal Scroll for both sections */
+.quality-cards {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
+
+.quality-card {
+    flex: 0 0 auto;
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    width: 280px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.quality-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.quality-card h3 {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #007BFF;
+    margin-bottom: 10px;
+}
+
+.quality-card p {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.btn-card {
+    display: inline-block;
+    text-decoration: none;
+    background: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-card:hover {
+    background: #0056b3;
+}
+
+.quality-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* ===================== SCROLLBAR STYLING ===================== */
+.quality-cards::-webkit-scrollbar {
+    height: 8px;
+}
+
+.quality-cards::-webkit-scrollbar-thumb {
+    background: #007BFF;
+    border-radius: 4px;
+}
+
+.quality-cards::-webkit-scrollbar-track {
+    background: #eee;
+}
+
+/* ===================== RESPONSIVE DESIGN ===================== */
+@media (max-width: 1024px) {
+    .quality-card {
+        width: 260px;
+    }
+    
+    .quality-card img {
+        height: 180px;
+    }
+    
+    .products-banner .banner-title {
+        font-size: 32px;
+    }
+    
+    .products-banner .section-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .products-banner {
+        padding: 60px 20px;
+    }
+    
+    .products-banner .banner-title {
+        font-size: 28px;
+    }
+    
+    .products-banner .section-title {
+        font-size: 22px;
+    }
+    
+    .quality-card {
+        width: 240px;
+    }
+    
+    .quality-card img {
+        height: 160px;
+    }
+    
+    .quality-card h3 {
+        font-size: 18px;
+    }
+    
+    .quality-card p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-banner .banner-title {
+        font-size: 24px;
+    }
+    
+    .products-banner .banner-subtitle {
+        font-size: 14px;
+    }
+    
+    .products-banner .section-title {
+        font-size: 20px;
+        margin: 30px 0 20px;
+    }
+    
+    .quality-card {
+        width: 260px;
+    }
+    
+    .quality-card img {
+        height: 150px;
+    }
+    
+    .btn-card {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+/* ===================== ANIMATIONS ===================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ===================== FEATURES SECTION ===================== */
+.section {
+    background: #15172C;
+    padding: 60px 20px;
+    color: #fff;
+}
+
+.section-title {
+    font-family: 'Lato', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.divider {
+    width: 60px;
+    height: 3px;
+    background: #007BFF;
+    margin: 0 auto 40px;
+    border-radius: 2px;
+}
+
+/* Grid Layout (similar spacing as quality-cards) */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+/* Feature Card (same feel as .quality-card) */
+.feature-card {
+    background: #fff;
+    color: #333;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Icon styling */
+.feature-card i {
+    font-size: 40px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* Title */
+.feature-card h3 {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #007BFF;
+    margin-bottom: 10px;
+}
+
+/* Text */
+.feature-card p {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Hover effect (same as product cards) */
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+    .section {
+        padding: 50px 20px;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+    .feature-card h3 {
+        font-size: 18px;
+    }
+
+    .feature-card p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 22px;
+    }
+}section {
+    padding: 3rem 1.5rem;
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* heading area */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+}
+
+.divider {
+    width: 80px;
+    height: 4px;
+    background: #ffffff;
+    border-radius: 4px;
+    margin: 0 auto 2.5rem auto;
+}
+
+/* HORIZONTAL SCROLL CONTAINER — modern, clean, horizontal alignment 
+   each card stays in a rectangle box, aligned side by side (horizontal style) */
+.testimonials-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1.8rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0.5rem 0.25rem 2rem 0.25rem;
+    scrollbar-width: thin;
+    scrollbar-color: #2522e6 #e2e8f0;
+}
+
+/* smooth scroll on webkit */
+.testimonials-cards::-webkit-scrollbar {
+    height: 8px;
+}
+.testimonials-cards::-webkit-scrollbar-track {
+    background: #0563df;
+    border-radius: 10px;
+}
+.testimonials-cards::-webkit-scrollbar-thumb {
+    background: #2522e6;
+    border-radius: 10px;
+}
+
+/* INDIVIDUAL TESTIMONIAL CARD — rectangle box, consistent shape, elegant */
+.testimonial-card {
+    flex: 0 0 320px;           /* fixed width for horizontal alignment, rectangle look */
+    background: #ffffff;
+    border-radius: 28px;
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.02);
+    transition: transform 0.25s ease, box-shadow 0.3s ease;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(230, 126, 34, 0.15);
+    backdrop-filter: blur(0px);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 40px -16px rgba(0, 0, 0, 0.2);
+    border-color: rgba(34, 70, 230, 0.4);
+}
+
+/* rectangle image area: consistent aspect ratio, clean cropping */
+.testimonial-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: block;
+    background: #dfe6ed;
+    transition: transform 0.4s ease;
+}
+
+.testimonial-card:hover img {
+    transform: scale(1.02);
+}
+
+/* typography inside card */
+.testimonial-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1e2f3d;
+    margin: 1.2rem 1.2rem 0.6rem 1.2rem;
+    letter-spacing: -0.2px;
+    line-height: 1.3;
+}
+
+.testimonial-card p {
+    font-size: 0.95rem;
+    color: #2c3e44;
+    background: #fefaf5;
+    margin: 0 1.2rem 1.5rem 1.2rem;
+    padding: 0.8rem 1rem;
+    border-radius: 20px;
+    background: #fff9f0;
+    border-left: 4px solid #2246e6;
+    font-weight: 450;
+    line-height: 1.45;
+    flex: 1;
+}
+
+/* optional subtle decoration for quote symbol */
+.testimonial-card p::first-letter {
+    font-size: 1.3em;
+    color: #2236e6;
+    font-weight: 600;
+}
+
+/* ensure the last card doesn't have extra margin problems */
+.testimonials-cards:after {
+    content: '';
+    flex: 0 0 4px;
+}
+
+/* responsiveness: if screen is wide enough, we can also center the flow 
+   but maintains horizontal row — horizontal style (flex row, wrap not active) */
+@media (max-width: 768px) {
+    .section {
+        padding: 2rem 1rem;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+    .testimonial-card {
+        flex: 0 0 290px;
+    }
+    .testimonial-card h3 {
+        font-size: 1.2rem;
+        margin: 1rem 1rem 0.4rem 1rem;
+    }
+    .testimonial-card p {
+        margin: 0 1rem 1.2rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* small devices: still horizontal, slight adjustments */
+@media (max-width: 480px) {
+    .testimonial-card {
+        flex: 0 0 270px;
+    }
+    .testimonial-card img {
+        height: 160px;
+    }
+}
+
+/* optional subtle hint that you can scroll horizontally (for desktop) */
+.scroll-hint {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #8ba0ae;
+    margin-top: 0.5rem;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.scroll-hint span {
+    background: #e9edf2;
+    padding: 4px 10px;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ===== STATS SECTION ===== */
+.stats {
+    background: #101221;
+    padding: 60px 20px;
+}
+
+/* Container */
+.stats .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Grid Layout */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+}
+
+/* Each Stat Box */
+.stats-grid div {
+    background: #ffffff;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect */
+.stats-grid div:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Number Styling */
+.stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: #007BFF;
+    margin-bottom: 10px;
+}
+
+/* Text Styling */
+.stats-grid p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-number {
+        font-size: 30px;
+    }
+}
+/* Stagger animation for cards - works for both Camera and NVR/DVR sections */
+.quality-card:nth-child(1) { animation-delay: 0.1s; }
+.quality-card:nth-child(2) { animation-delay: 0.2s; }
+.quality-card:nth-child(3) { animation-delay: 0.3s; }
+.quality-card:nth-child(4) { animation-delay: 0.4s; }
+.quality-card:nth-child(5) { animation-delay: 0.5s; }
+.quality-card:nth-child(6) { animation-delay: 0.6s; }
+.quality-card:nth-child(7) { animation-delay: 0.7s; }
+.quality-card:nth-child(8) { animation-delay: 0.8s; }
+.quality-card:nth-child(9) { animation-delay: 0.9s; }
+.quality-card:nth-child(10) { animation-delay: 1s; } 

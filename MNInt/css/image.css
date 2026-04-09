@@ -1,0 +1,157 @@
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+     
+}
+
+.logo-img {
+    width: 40px;   /* adjust size */
+    height: auto;
+    margin-right: 10px; /* space between logo and text */
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section Layout */
+.hero-section {
+    padding: 60px 0;
+    background-color: #0f0020; /* Single background color for whole section */
+}
+
+/* Flex content inside hero - SAME BACKGROUND for both image and text */
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    background-color: #00221c; /* Same background as section */
+    padding: 30px 40px;
+    border-radius: 0px; /* Remove border radius for flat design */
+    box-shadow: none; /* Remove shadow to blend with background */
+}
+
+/* Hero Image - Left Side - NO HOVER EFFECT */
+.hero-image {
+    flex: 1;
+    max-width: 350px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    /* Remove hover effect - no transform */
+    transition: none; /* No transition on hover */
+    display: block;
+}
+
+/* Remove image hover effect completely */
+.hero-image img:hover {
+    transform: none; /* No scale effect */
+    box-shadow: none; /* No shadow change */
+}
+
+/* Hero Text - Right Side */
+.hero-text {
+    flex: 2;
+    padding-left: 20px;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    color: #817bb6;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+  
+/* Responsive Design */
+@media (max-width: 992px) {
+    .hero-content {
+        padding: 25px 30px;
+        gap: 35px;
+    }
+    
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-text p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 40px 0;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+        gap: 25px;
+    }
+    
+    .hero-image {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    .hero-text {
+        padding-left: 0;
+    }
+    
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .btn {
+        padding: 10px 24px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-image {
+        max-width: 220px;
+    }
+    
+    .hero-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-text p {
+        font-size: 0.9rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}

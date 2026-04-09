@@ -1,0 +1,146 @@
+/* Footer Styles */
+.site-footer {
+    background: #08462e;
+    color: #fff;
+}
+
+/* Above Footer */
+.site-above-footer-wrap {
+    background: #16213e;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-menu ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.footer-menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-menu ul li a:hover {
+    color: #007BFF;
+}
+
+/* Primary Footer */
+.site-primary-footer-wrap {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.footer-social a:hover {
+    background: #007BFF;
+    transform: translateY(-3px);
+}
+
+/* Below Footer */
+.site-below-footer-wrap {
+    background: #0f0f1a;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-copyright p {
+    margin: 0;
+    color: #888;
+    line-height: 1.6;
+}
+
+.footer-copyright a {
+    color: #4da6ff;
+    text-decoration: none;
+}
+
+.footer-copyright a:hover {
+    text-decoration: underline;
+}
+.social a {
+    color: #fff;
+    font-size: 18px;
+    margin-left: 15px;
+    transition: 0.3s;
+}
+
+.social a:hover {
+    color: #007BFF;
+}
+
+/* Scroll to Top */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    background: #007BFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 9999;
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    background: #0056b3;
+    transform: translateY(-3px);
+}
+
+.scroll-to-top i {
+    color: white;
+    font-size: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-menu ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .footer-social {
+        gap: 15px;
+    }
+    
+    .scroll-to-top {
+        bottom: 20px;
+        right: 20px;
+    }
+}

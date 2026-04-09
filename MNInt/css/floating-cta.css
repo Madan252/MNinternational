@@ -1,0 +1,51 @@
+/* Floating CTA Button */
+#cta-toggle {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    color: white;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#cta-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+#cta-options {
+    position: fixed;
+    bottom: 160px;
+    right: 20px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 99998;
+}
+
+.cta-btn {
+    background: #007BFF;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 24px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: background 0.2s;
+}
+
+.cta-btn:hover {
+    background: #0056b3;
+    color: white;
+    text-decoration: none;
+}
