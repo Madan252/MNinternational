@@ -1,27 +1,41 @@
 <?php
-session_start();
+header("Content-Type: application/json");
 
-// DB connection
 $con = mysqli_connect("localhost", "root", "", "mn_international");
+
 if (!$con) {
-    die("Connection failed: " . mysqli_connect_error());
+    echo json_encode([
+        "status" => "error",
+        "message" => "Database connection failed"
+    ]);
+    exit;
 }
 
-// Check ID
-if (!isset($_GET['id']) || empty($_GET['id'])) {
-    header("Location: view.php");
-    exit();
+$id = intval($_GET['id']);
+
+// check if exists
+$check = mysqli_query($con, "SELECT id FROM products WHERE id=$id AND deleted_at IS NULL");
+
+if (mysqli_num_rows($check) == 0) {
+    echo json_encode([
+        "status" => "error",
+        "message" => "Product not found"
+    ]);
+    exit;
 }
 
-$id = intval($_GET['id']); // safer
-
-// Soft delete (update deleted_at)
+// soft delete
 $query = "UPDATE products SET deleted_at = NOW() WHERE id = $id";
 
 if (mysqli_query($con, $query)) {
-    header("Location: view.php");
-    exit();
+    echo json_encode([
+        "status" => "success",
+        "message" => "Product deleted successfully!"
+    ]);
 } else {
-    echo "Error: " . mysqli_error($con);
+    echo json_encode([
+        "status" => "error",
+        "message" => "Unable to delete product"
+    ]);
 }
 ?>

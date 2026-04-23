@@ -49,6 +49,7 @@ $adminName = $_SESSION['admin_name'] ?? $_SESSION['admin_email'];
     <link rel="stylesheet" href="css/sidebar.css" />
     <link rel="stylesheet" href="css/admindashboard.css" />    
   <link rel="stylesheet" href="css/adminheader.css" />
+   <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>

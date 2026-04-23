@@ -8,7 +8,7 @@
     }
 
     body {
-        background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+        background: #16213e;
         display: flex;
         justify-content: center;
         align-items: flex-start;
@@ -142,7 +142,7 @@
     }
 
     .form-options a {
-        background-color: #6a1b9a;
+        background-color:#16213e;
         color: white;
         text-decoration: none;
         padding: 8px 14px;
@@ -155,7 +155,7 @@
 
     .form-options a:hover,
     .form-options a:focus {
-        background-color: #4a148c;
+        background-color: #16213e;
         transform: scale(1.03);
         outline: none;
     }
