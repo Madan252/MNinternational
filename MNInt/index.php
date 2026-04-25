@@ -4,197 +4,195 @@ ini_set('display_errors', 1);
 
 session_start();
 
-// Database connection
+// DB CONNECTION
 $con = mysqli_connect("localhost", "root", "", "mn_international");
+if (!$con) die("Database connection failed");
 
-if (!$con) {
-    die("Database connection failed: " . mysqli_connect_error());
-}
-
-// Initialize cart
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = [];
-}
-
+// CART
+if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 $cartCount = array_sum($_SESSION['cart']);
 
-/* =========================
-   FETCH CATEGORIES
-========================= */
-$categoryQuery = "SELECT * FROM categories ORDER BY category_name";
-$categoryResult = mysqli_query($con, $categoryQuery);
+// =========================
+// IMAGE FUNCTIONS
+// =========================
+function getProductImage($category, $image) {
+    $category = strtolower(trim($category ?? 'default'));
+    $image = trim($image ?? '');
 
-if (!$categoryResult) {
-    die("Category Query Error: " . mysqli_error($con));
+    $path = "Admin/image/" . $category . "/" . $image;
+
+    if (!empty($image) && file_exists($path)) {
+        return $path;
+    }
+    return "image/default.png";
 }
 
+// =========================
+// HERO IMAGE ROTATION
+// =========================
+function getAllImages($dir) {
+    $images = [];
+    if (!is_dir($dir)) return $images;
+
+    foreach (scandir($dir) as $file) {
+        if ($file === '.' || $file === '..') continue;
+        $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+        if (in_array($ext, ['jpg','jpeg','png','webp'])) {
+            $images[] = $dir . "/" . $file;
+        }
+    }
+    sort($images);
+    return $images;
+}
+
+$allHeroImages = getAllImages("Admin/image/Eizviz");
+
+if (!isset($_SESSION['hero_index'])) $_SESSION['hero_index'] = 0;
+
+$total = count($allHeroImages);
+
+if ($total > 0) {
+    $heroImage = $allHeroImages[$_SESSION['hero_index']];
+    $_SESSION['hero_index'] = ($_SESSION['hero_index'] + 1) % $total;
+} else {
+    $heroImage = "image/default.png";
+}
+
+// =========================
+// FETCH DATA
+// =========================
 $categories = [];
-while ($row = mysqli_fetch_assoc($categoryResult)) {
-    $categories[] = $row;
-}
-
-/* =========================
-   FETCH PRODUCTS
-========================= */
-$productsByCategory = [];
-
-foreach ($categories as $category) {
-
-    $productQuery = "SELECT p.*, c.category_name 
-                     FROM products p
-                     JOIN categories c ON p.category_id = c.id
-                     WHERE p.category_id = {$category['id']}
-                     ORDER BY p.created_at DESC";
-
-    $productResult = mysqli_query($con, $productQuery);
-
-    if (!$productResult) {
-        die("Product Query Error: " . mysqli_error($con));
-    }
-
-    $products = [];
-    while ($row = mysqli_fetch_assoc($productResult)) {
-        $products[] = $row;
-    }
-
-    $productsByCategory[$category['id']] = [
-        'category' => $category,
-        'products' => $products
-    ];
-}
-
-/* =========================
-   FETCH ALL PRODUCTS
-========================= */
-$allProductsQuery = "SELECT p.*, c.category_name 
-                     FROM products p
-                     JOIN categories c ON p.category_id = c.id
-                     ORDER BY p.created_at DESC";
-
-$allProductsResult = mysqli_query($con, $allProductsQuery);
-
-if (!$allProductsResult) {
-    die("All Products Query Error: " . mysqli_error($con));
-}
-
-$allProducts = [];
-while ($row = mysqli_fetch_assoc($allProductsResult)) {
-    $allProducts[] = $row;
-}
-
-// HEADER
-$page_css = '<link rel="stylesheet" href="css/index.css">';
+$res = mysqli_query($con, "SELECT * FROM categories WHERE deleted_at IS NULL ORDER BY category_name");
+while ($row = mysqli_fetch_assoc($res)) $categories[] = $row;
 
 include 'header.php';
 ?>
 
-<!-- HERO SECTION -->
+<link rel="stylesheet" href="css/index.css?v=<?php echo time(); ?>">
+
+<!-- ========================= HERO ========================= -->
 <section class="hero-section">
     <div class="hero-content">
 
-        <div class="hero-image">
-            <img src="image/home.jpeg" alt="MN International">
-        </div>
-
         <div class="hero-text">
             <h1>MN International</h1>
-            <p>
-                Delivering premium CCTV and surveillance solutions across Nepal with 24/7 support and trusted technology.
-            </p>
+            <p>Premium CCTV & surveillance solutions across Nepal.</p>
             <a href="products.php" class="btn-card">Explore Products →</a>
         </div>
 
-    </div>
-</section>
-
-<!-- PRODUCTS SECTION -->
-<section class="products-banner">
-    <div class="container">
-
-        <h1 class="banner-title">Our Products</h1>
-        <p class="banner-subtitle">Explore CCTV and security solutions</p>
-
-        <!-- CATEGORY TABS -->
-        <div class="category-tabs">
-            <button class="tab-btn active" onclick="filterProducts('all')">All Products</button>
-
-            <?php foreach ($categories as $category): ?>
-                <button class="tab-btn" onclick="filterProducts('<?php echo $category['id']; ?>')">
-                    <?php echo htmlspecialchars($category['category_name']); ?>
-                </button>
-            <?php endforeach; ?>
+        <div class="hero-image-grid">
+            <img src="<?php echo $heroImage; ?>" class="hero-img">
         </div>
 
-        <!-- PRODUCTS BY CATEGORY -->
-        <?php foreach ($productsByCategory as $categoryData): ?>
-            <?php if (count($categoryData['products']) > 0): ?>
-
-                <div id="category-<?php echo $categoryData['category']['id']; ?>" class="category-section">
-
-                    <h3 class="section-title">
-                        <?php echo htmlspecialchars($categoryData['category']['category_name']); ?>
-                    </h3>
-
-                    <div class="quality-cards">
-
-                        <?php foreach ($categoryData['products'] as $product): ?>
-
-                            <?php
-                            $image = !empty($product['image']) ? $product['image'] : 'default.png';
-                            $imagePath = "image/" . $image;
-
-                            if (!file_exists($imagePath)) {
-                                $imagePath = "image/default.png";
-                            }
-                            ?>
-
-                            <div class="quality-card">
-
-                                <img src="<?php echo $imagePath; ?>" alt="product">
-
-                                <h3><?php echo htmlspecialchars($product['name']); ?></h3>
-
-                                <p>
-                                    <?php echo htmlspecialchars(substr($product['description'], 0, 100)) . '...'; ?>
-                                </p>
-
-                                <div class="product-price">
-                                    Rs. <?php echo number_format($product['price'], 2); ?>
-                                </div>
-
-                                <div class="product-stock">
-                                    <?php echo ($product['stock'] > 0) ? '✓ In Stock' : '✗ Out of Stock'; ?>
-                                </div>
-
-                                <div class="product-buttons">
-
-                                    <?php if ($product['stock'] > 0): ?>
-                                        <button onclick="addToCart(<?php echo $product['id']; ?>)" class="btn-add-cart">
-                                            Add to Cart
-                                        </button>
-                                    <?php else: ?>
-                                        <button class="btn-add-cart disabled" disabled>
-                                            Out of Stock
-                                        </button>
-                                    <?php endif; ?>
-
-                                    <a href="product-details.php?id=<?php echo $product['id']; ?>" class="btn-view-more">
-                                        View More
-                                    </a>
-
-                                </div>
-
-                            </div>
-
-                        <?php endforeach; ?>
-
-                    </div>
-                </div>
-
-            <?php endif; ?>
-        <?php endforeach; ?>
-
     </div>
 </section>
+
+<!-- ========================= PRODUCTS ========================= -->
+<section class="products-banner">
+<div class="container">
+
+<h1>Our Products</h1>
+
+<!-- 🔥 BEST SELLING -->
+<h2 class="section-title">🔥 Best Selling</h2>
+<div class="product-grid">
+
+<?php
+$best = mysqli_query($con, "
+    SELECT * FROM products 
+    WHERE deleted_at IS NULL
+    ORDER BY stock ASC
+    LIMIT 6
+");
+
+while ($p = mysqli_fetch_assoc($best)):
+?>
+<div class="product-card">
+    <img src="<?php echo getProductImage($p['category_name'], $p['image']); ?>">
+    <h3><?php echo htmlspecialchars($p['name']); ?></h3>
+    <div class="price">Rs. <?php echo $p['price']; ?></div>
+</div>
+<?php endwhile; ?>
+
+</div>
+
+<!-- 🆕 NEW ARRIVALS -->
+<h2 class="section-title">🆕 New Arrivals</h2>
+<div class="product-grid">
+
+<?php
+$new = mysqli_query($con, "
+    SELECT * FROM products 
+    WHERE deleted_at IS NULL
+    ORDER BY id DESC
+    LIMIT 6
+");
+
+while ($p = mysqli_fetch_assoc($new)):
+?>
+<div class="product-card">
+    <img src="<?php echo getProductImage($p['category_name'], $p['image']); ?>">
+    <h3><?php echo htmlspecialchars($p['name']); ?></h3>
+    <div class="price">Rs. <?php echo $p['price']; ?></div>
+</div>
+<?php endwhile; ?>
+
+</div>
+
+<!-- CATEGORY TABS -->
+<div class="category-tabs">
+
+    <button class="tab-btn active" onclick="filterProducts('all', this)">All</button>
+
+    <?php foreach ($categories as $c): ?>
+        <button class="tab-btn" onclick="filterProducts('<?php echo $c['id']; ?>', this)">
+            <?php echo htmlspecialchars($c['category_name']); ?>
+        </button>
+    <?php endforeach; ?>
+
+</div>
+
+<!-- ALL PRODUCTS (SLIDER) -->
+<div id="category-all" class="category-section active">
+<div class="slider-wrapper">
+<button class="slider-btn left" onclick="scrollSlider(this,-1)">‹</button>
+
+<div class="quality-cards">
+
+<?php
+$all = mysqli_query($con, "SELECT * FROM products WHERE deleted_at IS NULL");
+while ($p = mysqli_fetch_assoc($all)):
+?>
+<div class="quality-card">
+    <img src="<?php echo getProductImage($p['category_name'], $p['image']); ?>">
+    <h3><?php echo $p['name']; ?></h3>
+    <div class="product-price">Rs. <?php echo $p['price']; ?></div>
+</div>
+<?php endwhile; ?>
+
+</div>
+
+<button class="slider-btn right" onclick="scrollSlider(this,1)">›</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ========================= JS ========================= -->
+<script>
+function filterProducts(id, btn){
+    document.querySelectorAll('.category-section').forEach(s=>s.classList.remove('active'));
+    document.getElementById('category-'+id)?.classList.add('active');
+
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+}
+
+function scrollSlider(btn, dir){
+    const box = btn.parentElement.querySelector('.quality-cards');
+    box.scrollBy({ left: dir*300, behavior:'smooth' });
+}
+</script>
 
 <?php include 'footer.php'; ?>

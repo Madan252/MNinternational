@@ -1,0 +1,112 @@
+
+/* ===== MAKE PAGE FULL HEIGHT ===== */
+html, body {
+    height: 100%;
+    background: #f5f6fa;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== TITLE ===== */
+.cart-title {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 28px;
+    color: #222;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.cart-container {
+    width: 80%;
+    margin: auto;
+    min-height: 60vh;   /* ensures footer stays down */
+}
+
+/* ===== EMPTY CART ===== */
+.empty-cart {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 40px;
+    min-height: 40vh;   /* pushes footer down properly */
+}
+
+/* ===== CART ITEM ===== */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ===== IMAGE ===== */
+.cart-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ===== DETAILS ===== */
+.cart-details {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.cart-details h3 {
+    margin-bottom: 5px;
+}
+
+.subtotal {
+    font-weight: bold;
+    color: #333;
+}
+
+/* ===== REMOVE BUTTON ===== */
+.remove-btn {
+    background: red;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.remove-btn:hover {
+    background: darkred;
+}
+
+/* ===== TOTAL ===== */
+.cart-total {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* ===== CHECKOUT ===== */
+.checkout-box {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.checkout-btn {
+    background: #27ae60;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.checkout-btn:hover {
+    background: #219150;
+}
+
+/* ===== FOOTER FIX ===== */
+footer {
+    margin-top: auto;
+}

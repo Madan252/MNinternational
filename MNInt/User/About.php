@@ -1,8 +1,11 @@
-<?php include 'header.php'; ?>
+<?php include '../header.php'; ?>
 
 <head>
     <title>About Us - MN International</title>
-    <link rel="stylesheet" href="css/about.css?v=1">
+    <link rel="stylesheet" href="../css/about.css?v=1">
+    <link rel="stylesheet" href="../css/header.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/footer.css?v=<?php echo time(); ?>">
+
 </head>
 
 <body>
@@ -119,6 +122,6 @@
     </div>
 </section>
 
-<?php include 'footer.php'; ?>
+<?php include '../footer.php'; ?>
 
 </body>

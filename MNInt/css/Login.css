@@ -1,0 +1,112 @@
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   BODY LAYOUT (NO SCROLL)
+========================= */
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #4c8cda, #f9fbfd);
+}
+
+/* =========================
+   MAIN CENTER AREA
+========================= */
+.auth-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* =========================
+   LOGIN BOX (FIXED SIZE)
+========================= */
+.authBox {
+    width: 500px;
+    height: 400px;
+    background: #000324;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: 0.3s ease;
+}
+
+.authBox:hover {
+    transform: translateY(-3px);
+}
+
+/* =========================
+   TITLE
+========================= */
+.authBox h2 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* =========================
+   MESSAGE BOX
+========================= */
+.message-container {
+    font-size: 12px;
+    padding: 6px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.error-msg {
+    background: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #ef9a9a;
+}
+
+.success-msg {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+/* =========================
+   GOOGLE BUTTON FIX
+========================= */
+.g_id_signin {
+    display: flex;
+    justify-content: center;
+    transform: scale(0.85);
+    margin-top: 5px;
+}
+
+/* =========================
+   FOOTER FIX
+========================= */
+footer {
+    margin-top: auto;
+}
+
+/* =========================
+   RESPONSIVE (OPTIONAL)
+========================= */
+@media (max-width: 480px) {
+    .authBox {
+        width: 90%;
+        height: auto;
+    }
+}
